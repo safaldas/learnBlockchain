@@ -1,3 +1,5 @@
+import { fail } from 'assert'
+
 const Block = require('./block')
 
 class BlockChain {
@@ -20,8 +22,26 @@ class BlockChain {
     if (this.isValidBlock(newBlock)) {
       this.chain.push(newBlock)
     } else {
-      console.error("The block is invalid and cannot be added.")
+      console.error('The block is invalid and cannot be added.')
     }
+  }
+
+  //checking the validity of the block
+  isValidBlock(block) {
+    const currentBlock = this.chain[this.chain.length - 1]
+    if (currentBlock.index !== block.index - 1) {
+      return false
+    } else if (newBlock.previousHash !== currentBlock.hash) {
+      return false
+    }else if(newBlock.hash !== newBlock.calculateHash()){
+      return false
+    }
+    return true
+  }
+
+  //printing hte chain
+  printChain(){
+    console.log(this.chain)
   }
 }
 module.exports = BlockChain
