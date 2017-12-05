@@ -1,5 +1,3 @@
-import { fail } from 'assert'
-
 const Block = require('./block')
 
 class BlockChain {
@@ -31,9 +29,9 @@ class BlockChain {
     const currentBlock = this.chain[this.chain.length - 1]
     if (currentBlock.index !== block.index - 1) {
       return false
-    } else if (newBlock.previousHash !== currentBlock.hash) {
+    } else if (block.previousHash !== currentBlock.hash) {
       return false
-    }else if(newBlock.hash !== newBlock.calculateHash()){
+    }else if(block.hash !== block.calculateHash()){
       return false
     }
     return true
